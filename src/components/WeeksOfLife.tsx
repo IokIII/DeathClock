@@ -162,7 +162,7 @@ const TRANSLATIONS = {
 };
 
 const appLocale = '{{APP_LOCALE}}';
-const browserLocale = navigator.languages?.[0] || navigator.language || 'en-US';
+const browserLocale = navigator.languages?.[0] || navigator.language || 'fr-FR';
 const findMatchingLocale = (locale: string) => {
   if (TRANSLATIONS[locale as keyof typeof TRANSLATIONS]) return locale;
   const lang = locale.split('-')[0];
@@ -281,13 +281,14 @@ export default function WeeksOfLife() {
           const isPast = weekNumber < stats.weeksLived;
           const isCurrent = weekNumber === stats.weeksLived;
 
-          let cellClass = "w-2 h-2 m-0.5 rounded-sm transition-all ";
+          // Electric Stack Design
+          let cellClass = "w-2 h-2 m-0.5 rounded-sm transition-all duration-300 hover:scale-110 ";
           if (isPast) {
-            cellClass += "bg-gray-800 ";
+            cellClass += "bg-gradient-to-br from-cyan-400 to-blue-600 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-400/40 ";
           } else if (isCurrent) {
-            cellClass += "bg-blue-500 animate-pulse ";
+            cellClass += "bg-gradient-to-br from-yellow-400 to-orange-500 animate-pulse shadow-lg shadow-yellow-500/50 hover:shadow-yellow-400/60 ";
           } else {
-            cellClass += "bg-gray-200 ";
+            cellClass += "bg-gradient-to-br from-slate-600 to-slate-800 shadow-md hover:shadow-slate-500/30 ";
           }
 
           weekCells.push(
@@ -312,14 +313,14 @@ export default function WeeksOfLife() {
     }
 
     return (
-      <div className="mt-8 bg-white p-6 rounded-md shadow-sm">
-        <h2 className="text-lg font-normal mb-4 text-gray-800">{t('lifeInWeeksTitle')}</h2>
+      <div className="mt-8 bg-gradient-to-br from-slate-900 to-slate-800 p-6 rounded-lg shadow-2xl border border-slate-700">
+        <h2 className="text-lg font-normal mb-4 text-cyan-300">{t('lifeInWeeksTitle')}</h2>
         <div className="flex flex-col">
           {rows}
         </div>
 
         {showHoverData && (
-          <div className="mt-4 text-sm text-gray-600">
+          <div className="mt-4 text-sm text-slate-300">
             Week {hoverWeek! + 1}:
             {hoverWeek! < stats.weeksLived ?
               t('weekHoverPast') :
@@ -331,16 +332,16 @@ export default function WeeksOfLife() {
 
         <div className="flex mt-6 text-sm">
           <div className="flex items-center mr-4">
-            <div className="w-3 h-3 bg-gray-800 mr-2"></div>
-            <span className="text-gray-600">{t('legendPast')}</span>
+            <div className="w-3 h-3 bg-cyan-400 mr-2"></div>
+            <span className="text-slate-300">{t('legendPast')}</span>
           </div>
           <div className="flex items-center mr-4">
-            <div className="w-3 h-3 bg-blue-500 mr-2"></div>
-            <span className="text-gray-600">{t('legendPresent')}</span>
+            <div className="w-3 h-3 bg-yellow-400 mr-2"></div>
+            <span className="text-slate-300">{t('legendPresent')}</span>
           </div>
           <div className="flex items-center">
-            <div className="w-3 h-3 bg-gray-200 mr-2"></div>
-            <span className="text-gray-600">{t('legendFuture')}</span>
+            <div className="w-3 h-3 bg-slate-600 mr-2"></div>
+            <span className="text-slate-300">{t('legendFuture')}</span>
           </div>
         </div>
       </div>
@@ -352,64 +353,64 @@ export default function WeeksOfLife() {
 
     return (
       <div className="mt-8 space-y-6">
-        <div className="bg-white p-6 rounded-md shadow-sm">
-          <h2 className="text-lg font-normal mb-4 text-gray-800">{t('lifeHighlightsTitle')}</h2>
+        <div className="bg-gradient-to-br from-slate-900 to-slate-800 p-6 rounded-lg shadow-2xl border border-slate-700">
+          <h2 className="text-lg font-normal mb-4 text-cyan-300">{t('lifeHighlightsTitle')}</h2>
           <div className="space-y-4">
-            <p className="text-gray-600">
-              {t('lifeHighlightsWeeks')} <span className="text-gray-900 font-medium">{getFormattedNumber(stats.weeksLived)}</span> {t('lifeHighlightsWeeksEnd')} <span className="text-gray-900 font-medium">{stats.percentageLived}%</span> {t('lifeHighlightsPercent')}
+            <p className="text-slate-300">
+              {t('lifeHighlightsWeeks')} <span className="text-cyan-400 font-medium">{getFormattedNumber(stats.weeksLived)}</span> {t('lifeHighlightsWeeksEnd')} <span className="text-cyan-400 font-medium">{stats.percentageLived}%</span> {t('lifeHighlightsPercent')}
             </p>
-            <p className="text-gray-600">
-              {t('lifeHighlightsDays')} <span className="text-gray-900 font-medium">{getFormattedNumber(stats.daysLived)}</span> {t('lifeHighlightsDaysEnd')} <span className="text-gray-900 font-medium">{getFormattedNumber(stats.seasons)}</span> {t('lifeHighlightsSeasonsEnd')}
+            <p className="text-slate-300">
+              {t('lifeHighlightsDays')} <span className="text-cyan-400 font-medium">{getFormattedNumber(stats.daysLived)}</span> {t('lifeHighlightsDaysEnd')} <span className="text-cyan-400 font-medium">{getFormattedNumber(stats.seasons)}</span> {t('lifeHighlightsSeasonsEnd')}
             </p>
-            <p className="text-gray-600">
-              {t('lifeHighlightsHeartbeats')} <span className="text-gray-900 font-medium">{getFormattedNumber(stats.heartbeats)}</span> {t('lifeHighlightsHeartbeatsEnd')}
+            <p className="text-slate-300">
+              {t('lifeHighlightsHeartbeats')} <span className="text-cyan-400 font-medium">{getFormattedNumber(stats.heartbeats)}</span> {t('lifeHighlightsHeartbeatsEnd')}
             </p>
-            <p className="text-gray-600">
-              {t('lifeHighlightsBreaths')} <span className="text-gray-900 font-medium">{getFormattedNumber(stats.breaths)}</span> {t('lifeHighlightsBreathsMiddle')} <span className="text-gray-900 font-medium">{getFormattedNumber(stats.hoursSlept)}</span> {t('lifeHighlightsBreathsEnd')}
+            <p className="text-slate-300">
+              {t('lifeHighlightsBreaths')} <span className="text-cyan-400 font-medium">{getFormattedNumber(stats.breaths)}</span> {t('lifeHighlightsBreathsMiddle')} <span className="text-cyan-400 font-medium">{getFormattedNumber(stats.hoursSlept)}</span> {t('lifeHighlightsBreathsEnd')}
             </p>
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-md shadow-sm">
-          <h2 className="text-lg font-normal mb-4 text-gray-800">{t('societalContextTitle')}</h2>
+        <div className="bg-gradient-to-br from-slate-900 to-slate-800 p-6 rounded-lg shadow-2xl border border-slate-700">
+          <h2 className="text-lg font-normal mb-4 text-cyan-300">{t('societalContextTitle')}</h2>
           <div className="space-y-4">
-            <p className="text-gray-600">
-              {t('societalPopulation')} {stats.birthYear ? <span className="text-gray-900 font-medium">{getFormattedNumber(getPopulationAtYear(stats.birthYear))}</span> : ""} {t('societalPopulationEnd')} <span className="text-gray-900 font-medium">8</span> {t('societalPopulationFinal')}
+            <p className="text-slate-300">
+              {t('societalPopulation')} {stats.birthYear ? <span className="text-cyan-400 font-medium">{getFormattedNumber(getPopulationAtYear(stats.birthYear))}</span> : ""} {t('societalPopulationEnd')} <span className="text-cyan-400 font-medium">8</span> {t('societalPopulationFinal')}
             </p>
-            <p className="text-gray-600">
-              {t('societalMeetings')} <span className="text-gray-900 font-medium">80,000</span> {t('societalMeetingsMiddle')} <span className="text-gray-900 font-medium">{getFormattedNumber(Math.round(80000 * (stats.percentageLived/100)))}</span> {t('societalMeetingsEnd')}
+            <p className="text-slate-300">
+              {t('societalMeetings')} <span className="text-cyan-400 font-medium">80,000</span> {t('societalMeetingsMiddle')} <span className="text-cyan-400 font-medium">{getFormattedNumber(Math.round(80000 * (stats.percentageLived / 100)))}</span> {t('societalMeetingsEnd')}
             </p>
-            <p className="text-gray-600">
-              {t('societalBirthsDeaths')} <span className="text-gray-900 font-medium">{getFormattedNumber(Math.round(stats.daysLived * getAverageBirthsPerDay()))}</span> {t('societalBirthsMiddle')} <span className="text-gray-900 font-medium">{getFormattedNumber(Math.round(stats.daysLived * getAverageDeathsPerDay()))}</span> {t('societalDeathsEnd')}
+            <p className="text-slate-300">
+              {t('societalBirthsDeaths')} <span className="text-cyan-400 font-medium">{getFormattedNumber(Math.round(stats.daysLived * getAverageBirthsPerDay()))}</span> {t('societalBirthsMiddle')} <span className="text-cyan-400 font-medium">{getFormattedNumber(Math.round(stats.daysLived * getAverageDeathsPerDay()))}</span> {t('societalDeathsEnd')}
             </p>
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-md shadow-sm">
-          <h2 className="text-lg font-normal mb-4 text-gray-800">{t('cosmicPerspectiveTitle')}</h2>
+        <div className="bg-gradient-to-br from-slate-900 to-slate-800 p-6 rounded-lg shadow-2xl border border-slate-700">
+          <h2 className="text-lg font-normal mb-4 text-cyan-300">{t('cosmicPerspectiveTitle')}</h2>
           <div className="space-y-4">
-            <p className="text-gray-600">
-              {t('cosmicEarthTravel')} <span className="text-gray-900 font-medium">{getFormattedNumber(Math.round(stats.daysLived * 1.6 * 1000000))}</span> {t('cosmicEarthTravelEnd')}
+            <p className="text-slate-300">
+              {t('cosmicEarthTravel')} <span className="text-cyan-400 font-medium">{getFormattedNumber(Math.round(stats.daysLived * 1.6 * 1000000))}</span> {t('cosmicEarthTravelEnd')}
             </p>
-            <p className="text-gray-600">
-              {t('cosmicUniverse')} <span className="text-gray-900 font-medium">93</span> {t('cosmicUniverseMiddle')} <span className="text-gray-900 font-medium">93</span> {t('cosmicUniverseMiddle2')} <span className="text-gray-900 font-medium">{(80/13800000000 * 100).toFixed(10)}%</span> {t('cosmicUniverseEnd')}
+            <p className="text-slate-300">
+              {t('cosmicUniverse')} <span className="text-cyan-400 font-medium">93</span> {t('cosmicUniverseMiddle')} <span className="text-cyan-400 font-medium">93</span> {t('cosmicUniverseMiddle2')} <span className="text-cyan-400 font-medium">{(80 / 13800000000 * 100).toFixed(10)}%</span> {t('cosmicUniverseEnd')}
             </p>
-            <p className="text-gray-600">
-              {t('cosmicSolarSystem')} <span className="text-gray-900 font-medium">{getFormattedNumber(Math.round(stats.daysLived * 24 * 828000))}</span> {t('cosmicSolarSystemEnd')}
+            <p className="text-slate-300">
+              {t('cosmicSolarSystem')} <span className="text-cyan-400 font-medium">{getFormattedNumber(Math.round(stats.daysLived * 24 * 828000))}</span> {t('cosmicSolarSystemEnd')}
             </p>
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-md shadow-sm">
-          <h2 className="text-lg font-normal mb-4 text-gray-800">{t('naturalWorldTitle')}</h2>
+        <div className="bg-gradient-to-br from-slate-900 to-slate-800 p-6 rounded-lg shadow-2xl border border-slate-700">
+          <h2 className="text-lg font-normal mb-4 text-cyan-300">{t('naturalWorldTitle')}</h2>
           <div className="space-y-4">
-            <p className="text-gray-600">
-              {t('naturalLunarCycles')} <span className="text-gray-900 font-medium">{getFormattedNumber(Math.round(stats.daysLived / 29.53))}</span> {t('naturalLunarMiddle')} <span className="text-gray-900 font-medium">{getFormattedNumber(Math.floor(stats.daysLived / 365.25))}</span> {t('naturalLunarEnd')}
+            <p className="text-slate-300">
+              {t('naturalLunarCycles')} <span className="text-cyan-400 font-medium">{getFormattedNumber(Math.round(stats.daysLived / 29.53))}</span> {t('naturalLunarMiddle')} <span className="text-cyan-400 font-medium">{getFormattedNumber(Math.floor(stats.daysLived / 365.25))}</span> {t('naturalLunarEnd')}
             </p>
-            <p className="text-gray-600">
-              {t('naturalSequoia')} <span className="text-gray-900 font-medium">{((stats.daysLived / 365.25) / 3000 * 100).toFixed(2)}%</span> {t('naturalSequoiaEnd')}
+            <p className="text-slate-300">
+              {t('naturalSequoia')} <span className="text-cyan-400 font-medium">{((stats.daysLived / 365.25) / 3000 * 100).toFixed(2)}%</span> {t('naturalSequoiaEnd')}
             </p>
-            <p className="text-gray-600">
+            <p className="text-slate-300">
               {t('naturalCells')}
             </p>
           </div>
@@ -425,10 +426,10 @@ export default function WeeksOfLife() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6 pt-16">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-6 pt-16">
       <div className="max-w-md mx-auto">
-        <h1 className="text-2xl font-normal text-gray-800 mb-2">{t('pageTitle')}</h1>
-        <p className="text-gray-600 mb-8">{t('pageSubtitle')}</p>
+        <h1 className="text-2xl font-normal text-cyan-300 mb-2">{t('pageTitle')}</h1>
+        <p className="text-slate-300 mb-8">{t('pageSubtitle')}</p>
 
         {step === 1 ? (
           <div className="bg-white p-6 rounded-md shadow-sm">
