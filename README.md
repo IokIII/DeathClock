@@ -2,6 +2,8 @@
 
 A React application that visualizes your life in weeks, providing perspective on time and mortality.
 
+![alt text](image.png)
+
 ## Features
 
 - Interactive week grid visualization

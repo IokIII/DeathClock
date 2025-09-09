@@ -162,7 +162,7 @@ const TRANSLATIONS = {
 };
 
 const appLocale = '{{APP_LOCALE}}';
-const browserLocale = navigator.languages?.[0] || navigator.language || 'fr-FR';
+const browserLocale = navigator.languages?.[0] || navigator.language || 'en-US';
 const findMatchingLocale = (locale: string) => {
   if (TRANSLATIONS[locale as keyof typeof TRANSLATIONS]) return locale;
   const lang = locale.split('-')[0];
